@@ -48,4 +48,17 @@ describe('Hoverable', () => {
     expect(hoverable.find(TestComponent).props().hovered)
       .toBe(true);
   });
+
+  it('should pass onMouseEnter to subcomponent', () => {
+    const text = 'hi';
+    const mockOnMouseEnter = jest.fn();
+    const hoverable = mount(
+      <Hoverable onMouseEnter={mockOnMouseEnter}>
+        <TestComponent>{text}</TestComponent>
+      </Hoverable>,
+    );
+    hoverable.find(TestComponent).simulate('mouseEnter');
+    expect(mockOnMouseEnter)
+      .toBeCalled();
+  });
 });
