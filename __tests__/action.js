@@ -1,6 +1,6 @@
 import {
   INCREMENT,
-} from '../src/action.js';
+} from '../src/action';
 
 describe('action', () => {
   it('INCREMENT action type exists', () => {
