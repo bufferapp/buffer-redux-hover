@@ -18,4 +18,17 @@ describe('reducer', () => {
         [id]: true,
       });
   });
+  it('should handle hover with existing hover states', () => {
+    const id = 'some id';
+    const otherId = 'other id';
+    const initialState = { [otherId]: true };
+    expect(reducer(initialState, {
+      type: HOVER,
+      id,
+    }))
+      .toEqual({
+        ...initialState,
+        [id]: true,
+      });
+  });
 });
