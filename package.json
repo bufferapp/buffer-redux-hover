@@ -1,0 +1,24 @@
+{
+  "name": "@bufferapp/redux-hover",
+  "version": "0.0.1",
+  "description": "Keep React component hover state in redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bufferapp/buffer-redux-hover.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "hover"
+  ],
+  "author": "Harrison Harnisch <hharnisc@gmail.com> (http://hharnisc.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bufferapp/buffer-redux-hover/issues"
+  },
+  "homepage": "https://github.com/bufferapp/buffer-redux-hover#readme"
+}
