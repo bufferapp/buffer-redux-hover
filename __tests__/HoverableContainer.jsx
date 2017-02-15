@@ -43,4 +43,24 @@ describe('HoverableContainer', () => {
     expect(wrapper.find(TestComponent).text())
       .toBe(text);
   });
+
+  it('should render a hovered component', () => {
+    const text = 'Hi!';
+    const id = 'someid';
+    const store = storeFake({
+      hover: {
+        [id]: true,
+      },
+    });
+    const wrapper = mount(
+      <Provider store={store}>
+        <HoverableContainer id={id}>
+          <TestComponent>{text}</TestComponent>
+        </HoverableContainer>
+      </Provider>,
+    );
+
+    expect(wrapper.find(TestComponent).props().hovered)
+      .toBe(true);
+  });
 });
