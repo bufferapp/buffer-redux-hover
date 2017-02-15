@@ -41,4 +41,13 @@ describe('reducer', () => {
     }))
       .toEqual({});
   });
+  it('should handle missing UNHOVER id', () => {
+    const id = 'some id';
+    const initialState = {};
+    expect(reducer(initialState, {
+      type: UNHOVER,
+      id,
+    }))
+      .toEqual({});
+  });
 });
