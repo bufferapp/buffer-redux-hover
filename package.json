@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/eslint/bin/eslint.js . --ignore-pattern coverage node_modules",
-    "test": "npm run lint && jest --coverage"
+    "test": "npm run lint && jest --coverage",
+    "test-watch": "jest --watch"
   },
   "jest": {
     "coverageThreshold": {
