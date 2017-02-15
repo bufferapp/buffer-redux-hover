@@ -5,7 +5,17 @@
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/eslint/bin/eslint.js . --ignore-pattern coverage node_modules",
-    "test": "npm run lint && jest"
+    "test": "npm run lint && jest --coverage"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   },
   "repository": {
     "type": "git",
