@@ -9,20 +9,14 @@ const TestComponent = ({
   hover,
   onMouseEnter,
   onMouseLeave,
-}) => {
-  const style = {
-    background: hover ? 'green' : 'red',
-  };
-  return (
-    <div
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      style={style}
-    >
-      {children}
-    </div>
-  );
-};
+}) =>
+  <div
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+    style={{ background: hover ? 'green' : 'red' }}
+  >
+    {children}
+  </div>;
 
 /* eslint-enable react/prop-types */
 
