@@ -37,4 +37,15 @@ describe('Hoverable', () => {
     expect(hoverable.find(TestComponent).text())
       .toBe(text);
   });
+
+  it('should pass hovered to subcomponent', () => {
+    const text = 'hi';
+    const hoverable = mount(
+      <Hoverable hovered>
+        <TestComponent>{text}</TestComponent>
+      </Hoverable>,
+    );
+    expect(hoverable.find(TestComponent).props().hovered)
+      .toBe(true);
+  });
 });
