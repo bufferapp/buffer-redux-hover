@@ -2,6 +2,7 @@ import {
   HOVER,
   UNHOVER,
   hover,
+  unhover,
 } from '../src/action';
 
 describe('action', () => {
@@ -19,6 +20,16 @@ describe('action', () => {
       expect(hover(id))
         .toEqual({
           type: HOVER,
+          id,
+        });
+    });
+  });
+  describe('unhover', () => {
+    it('should create expected action', () => {
+      const id = 'some id';
+      expect(unhover(id))
+        .toEqual({
+          type: UNHOVER,
           id,
         });
     });

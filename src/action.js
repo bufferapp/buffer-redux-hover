@@ -5,3 +5,8 @@ export const hover = id => ({
   type: HOVER,
   id,
 });
+
+export const unhover = id => ({
+  type: UNHOVER,
+  id,
+});
