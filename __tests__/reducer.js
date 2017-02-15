@@ -1,6 +1,7 @@
 import reducer from '../src/reducer';
 import {
   HOVER,
+  UNHOVER,
 } from '../src/action';
 
 describe('reducer', () => {
@@ -30,5 +31,14 @@ describe('reducer', () => {
         ...initialState,
         [id]: true,
       });
+  });
+  it('should handle UNHOVER', () => {
+    const id = 'some id';
+    const initialState = { [id]: true };
+    expect(reducer(initialState, {
+      type: UNHOVER,
+      id,
+    }))
+      .toEqual({});
   });
 });
