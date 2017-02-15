@@ -61,4 +61,17 @@ describe('Hoverable', () => {
     expect(mockOnMouseEnter)
       .toBeCalled();
   });
+
+  it('should pass onMouseLeave to subcomponent', () => {
+    const text = 'hi';
+    const mockOnMouseLeave = jest.fn();
+    const hoverable = mount(
+      <Hoverable onMouseLeave={mockOnMouseLeave}>
+        <TestComponent>{text}</TestComponent>
+      </Hoverable>,
+    );
+    hoverable.find(TestComponent).simulate('mouseLeave');
+    expect(mockOnMouseLeave)
+      .toBeCalled();
+  });
 });
