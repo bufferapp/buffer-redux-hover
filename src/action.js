@@ -1,12 +1,12 @@
 export const HOVER = 'HOVER';
 export const UNHOVER = 'UNHOVER';
 
-export const hover = id => ({
+export const hover = hoverId => ({
   type: HOVER,
-  id,
+  hoverId,
 });
 
-export const unhover = id => ({
+export const unhover = hoverId => ({
   type: UNHOVER,
-  id,
+  hoverId,
 });

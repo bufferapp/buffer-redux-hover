@@ -1,6 +1,6 @@
 import {
   reducer,
-  Hoverable,
+  connectHoverable,
 } from '../src/index';
 
 describe('index', () => {
@@ -10,7 +10,7 @@ describe('index', () => {
   });
 
   it('should export the HoverableContainer', () => {
-    expect(Hoverable)
+    expect(connectHoverable)
       .toBeDefined();
   });
 });

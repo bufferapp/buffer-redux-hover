@@ -1,6 +1,6 @@
 {
   "name": "@bufferapp/redux-hover",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Keep React component hover state in redux",
   "main": "./lib/index.js",
   "scripts": {

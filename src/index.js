@@ -1,2 +1,2 @@
 export reducer from './reducer';
-export Hoverable from './HoverableContainer';
+export connectHoverable from './connectHoverable';

@@ -16,21 +16,21 @@ describe('action', () => {
   });
   describe('hover', () => {
     it('should create expected action', () => {
-      const id = 'some id';
-      expect(hover(id))
+      const hoverId = 'some id';
+      expect(hover(hoverId))
         .toEqual({
           type: HOVER,
-          id,
+          hoverId,
         });
     });
   });
   describe('unhover', () => {
     it('should create expected action', () => {
-      const id = 'some id';
-      expect(unhover(id))
+      const hoverId = 'some id';
+      expect(unhover(hoverId))
         .toEqual({
           type: UNHOVER,
-          id,
+          hoverId,
         });
     });
   });

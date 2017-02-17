@@ -10,43 +10,43 @@ describe('reducer', () => {
       .toEqual({});
   });
   it('should handle HOVER', () => {
-    const id = 'some id';
+    const hoverId = 'some hoverId';
     expect(reducer(undefined, {
       type: HOVER,
-      id,
+      hoverId,
     }))
       .toEqual({
-        [id]: true,
+        [hoverId]: true,
       });
   });
   it('should handle hover with existing hover states', () => {
-    const id = 'some id';
-    const otherId = 'other id';
+    const hoverId = 'some hoverId';
+    const otherId = 'other hoverId';
     const initialState = { [otherId]: true };
     expect(reducer(initialState, {
       type: HOVER,
-      id,
+      hoverId,
     }))
       .toEqual({
         ...initialState,
-        [id]: true,
+        [hoverId]: true,
       });
   });
   it('should handle UNHOVER', () => {
-    const id = 'some id';
-    const initialState = { [id]: true };
+    const hoverId = 'some hoverId';
+    const initialState = { [hoverId]: true };
     expect(reducer(initialState, {
       type: UNHOVER,
-      id,
+      hoverId,
     }))
       .toEqual({});
   });
-  it('should handle missing UNHOVER id', () => {
-    const id = 'some id';
+  it('should handle missing UNHOVER hoverId', () => {
+    const hoverId = 'some hoverId';
     const initialState = {};
     expect(reducer(initialState, {
       type: UNHOVER,
-      id,
+      hoverId,
     }))
       .toEqual({});
   });

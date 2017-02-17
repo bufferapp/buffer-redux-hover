@@ -22,45 +22,53 @@ export default app;
 Create a component that has a `hovered`, `onMouseEnter` and `onMouseLeave` prop.
 
 ```js
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { connectHoverable } from '@bufferapp/redux-hover';
 
-const MyComponent = ({
+const MyHoverableComponent = ({
   hovered, // managed by redux-hover
   onMouseEnter,
   onMouseLeave,
-}) =>
-  <div
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-    style={{ background: hovered ? 'green' : 'red' }}
-  >
-    Hover This
-  </div>;
+}) => {
+  const style = {
+    background: hovered ? 'red' : 'blue',
+  };
+  return (
+    <div
+      style={style}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      Hover This
+    </div>
+  );
+};
 
-MyComponent.propTypes = {
+MyHoverableComponent.propTypes = {
+  hoverId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   hovered: PropTypes.bool,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
 };
 
-export default MyComponent;
+
+export default connectHoverable(MyHoverableComponent);
 ```
 
 Wrap `MyComponent` with the `Hoverable` component. Make sure you set and `id`.
 
 ```js
 import React from 'react';
-import { Hoverable } from '@bufferapp/redux-hover';
-import MyComponent from './MyComponent';
+import MyHoverableComponent from './MyHoverableComponent';
 
 const App = () =>
   <div>
-    <Hoverable id={'myComponent'}>
-      <MyComponent />
-    </Hoverable>
-    <Hoverable id={'myOtherComponent'}>
-      <MyComponent />
-    </Hoverable>
+    <MyHoverableComponent hoverId={'myComponent'}/>
+    <MyHoverableComponent hoverId={'myOtherComponent'}/>
   </div>;
 
 export default App;
@@ -72,7 +80,7 @@ export default App;
 
 the hovered prop is set to `true` on `MyComponent` when the mouse is hovering it. Otherwise it's set to false.
 
-### Choosing Id's
+### Choosing hoverId's
 
 As long as id's are different, they'll be independently hoverable. The above example sets the strings manually, but you could also use a `uuid()` too.
 

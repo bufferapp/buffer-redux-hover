@@ -6,10 +6,10 @@ import {
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case HOVER:
-      return { ...state, [action.id]: true };
+      return { ...state, [action.hoverId]: true };
     case UNHOVER: {
       const newState = { ...state };
-      delete newState[action.id];
+      delete newState[action.hoverId];
       return newState;
     }
     default:

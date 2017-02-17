@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
-import HoverableContainer from '../src/HoverableContainer';
+import connectHoverable from '../src/connectHoverable';
 import {
   HOVER,
   UNHOVER,
@@ -30,6 +30,8 @@ const TestComponent = ({
     {children}
   </div>;
 
+const HoverableComponent = connectHoverable(TestComponent);
+
 /* eslint-enable react/prop-types */
 
 describe('HoverableContainer', () => {
@@ -38,9 +40,7 @@ describe('HoverableContainer', () => {
     const store = storeFake({});
     const wrapper = mount(
       <Provider store={store}>
-        <HoverableContainer id={'someid'}>
-          <TestComponent>{text}</TestComponent>
-        </HoverableContainer>
+        <HoverableComponent hoverId={'someid'}>{text}</HoverableComponent>
       </Provider>,
     );
 
@@ -50,17 +50,15 @@ describe('HoverableContainer', () => {
 
   it('should render a hovered component', () => {
     const text = 'Hi!';
-    const id = 'someid';
+    const hoverId = 'someid';
     const store = storeFake({
       hover: {
-        [id]: true,
+        [hoverId]: true,
       },
     });
     const wrapper = mount(
       <Provider store={store}>
-        <HoverableContainer id={id}>
-          <TestComponent>{text}</TestComponent>
-        </HoverableContainer>
+        <HoverableComponent hoverId={hoverId}>{text}</HoverableComponent>
       </Provider>,
     );
 
@@ -70,39 +68,61 @@ describe('HoverableContainer', () => {
 
   it('should dispatch onMouseEnter event', () => {
     const text = 'Hi!';
-    const id = 'someid';
+    const hoverId = 'someid';
     const store = storeFake({});
     const wrapper = mount(
       <Provider store={store}>
-        <HoverableContainer id={id}>
-          <TestComponent>{text}</TestComponent>
-        </HoverableContainer>
+        <HoverableComponent hoverId={hoverId}>{text}</HoverableComponent>
       </Provider>,
     );
-    wrapper.find(HoverableContainer).simulate('mouseEnter');
+    wrapper.find(HoverableComponent).simulate('mouseEnter');
     expect(store.dispatch)
       .toBeCalledWith({
         type: HOVER,
-        id,
+        hoverId,
       });
   });
 
   it('should dispatch onMouseLeave event', () => {
     const text = 'Hi!';
-    const id = 'someid';
+    const hoverId = 'someid';
     const store = storeFake({});
     const wrapper = mount(
       <Provider store={store}>
-        <HoverableContainer id={id}>
-          <TestComponent>{text}</TestComponent>
-        </HoverableContainer>
+        <HoverableComponent hoverId={hoverId}>{text}</HoverableComponent>
       </Provider>,
     );
-    wrapper.find(HoverableContainer).simulate('mouseLeave');
+    wrapper.find(HoverableComponent).simulate('mouseLeave');
     expect(store.dispatch)
       .toBeCalledWith({
         type: UNHOVER,
-        id,
+        hoverId,
       });
+  });
+
+  it('should not dispatch onMouseEnter event without hoverId', () => {
+    const text = 'Hi!';
+    const store = storeFake({});
+    const wrapper = mount(
+      <Provider store={store}>
+        <HoverableComponent>{text}</HoverableComponent>
+      </Provider>,
+    );
+    wrapper.find(HoverableComponent).simulate('mouseEnter');
+    expect(store.dispatch)
+      .not.toBeCalled();
+  });
+
+  it('should not dispatch onMouseLeave event without hoverId', () => {
+    const text = 'Hi!';
+    const store = storeFake({});
+    const wrapper = mount(
+      <Provider store={store}>
+        <HoverableComponent>{text}</HoverableComponent>
+      </Provider>,
+    );
+    wrapper.find(HoverableComponent).simulate('mouseLeave');
+    expect(store.dispatch)
+      .not.toBeCalled();
   });
 });
