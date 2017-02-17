@@ -1,7 +1,7 @@
 import {
   reducer,
   Hoverable,
-} from '../index';
+} from '../src/index';
 
 describe('index', () => {
   it('should export the reducer', () => {
