@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 const Hoverable = ({
   children,
@@ -11,5 +11,13 @@ const Hoverable = ({
     onMouseEnter,
     onMouseLeave,
   });
+
+Hoverable.propTypes = {
+  children: PropTypes.node,
+  hovered: PropTypes.bool,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
 
 export default Hoverable;

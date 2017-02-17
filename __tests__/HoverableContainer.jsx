@@ -105,34 +105,4 @@ describe('HoverableContainer', () => {
         id,
       });
   });
-
-  it('should not dispatch onMouseEnter event with no id set', () => {
-    const text = 'Hi!';
-    const store = storeFake({});
-    const wrapper = mount(
-      <Provider store={store}>
-        <HoverableContainer>
-          <TestComponent>{text}</TestComponent>
-        </HoverableContainer>
-      </Provider>,
-    );
-    wrapper.find(HoverableContainer).simulate('mouseEnter');
-    expect(store.dispatch)
-      .not.toBeCalled();
-  });
-
-  it('should not dispatch onMouseLeave event with no id set', () => {
-    const text = 'Hi!';
-    const store = storeFake({});
-    const wrapper = mount(
-      <Provider store={store}>
-        <HoverableContainer>
-          <TestComponent>{text}</TestComponent>
-        </HoverableContainer>
-      </Provider>,
-    );
-    wrapper.find(HoverableContainer).simulate('mouseLeave');
-    expect(store.dispatch)
-      .not.toBeCalled();
-  });
 });

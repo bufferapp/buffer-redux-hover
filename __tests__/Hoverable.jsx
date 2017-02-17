@@ -23,8 +23,9 @@ const TestComponent = ({
 describe('Hoverable', () => {
   it('should render Hoverable', () => {
     const text = 'hi';
+    const id = 'some id';
     const hoverable = mount(
-      <Hoverable>
+      <Hoverable id={id}>
         <TestComponent>{text}</TestComponent>
       </Hoverable>,
     );
@@ -34,8 +35,9 @@ describe('Hoverable', () => {
 
   it('should pass hovered to subcomponent', () => {
     const text = 'hi';
+    const id = 'some id';
     const hoverable = mount(
-      <Hoverable hovered>
+      <Hoverable hovered id={id}>
         <TestComponent>{text}</TestComponent>
       </Hoverable>,
     );
@@ -45,9 +47,10 @@ describe('Hoverable', () => {
 
   it('should pass onMouseEnter to subcomponent', () => {
     const text = 'hi';
+    const id = 'some id';
     const mockOnMouseEnter = jest.fn();
     const hoverable = mount(
-      <Hoverable onMouseEnter={mockOnMouseEnter}>
+      <Hoverable onMouseEnter={mockOnMouseEnter} id={id}>
         <TestComponent>{text}</TestComponent>
       </Hoverable>,
     );
@@ -58,9 +61,10 @@ describe('Hoverable', () => {
 
   it('should pass onMouseLeave to subcomponent', () => {
     const text = 'hi';
+    const id = 'some id';
     const mockOnMouseLeave = jest.fn();
     const hoverable = mount(
-      <Hoverable onMouseLeave={mockOnMouseLeave}>
+      <Hoverable onMouseLeave={mockOnMouseLeave} id={id}>
         <TestComponent>{text}</TestComponent>
       </Hoverable>,
     );
