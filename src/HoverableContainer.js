@@ -6,14 +6,12 @@ import {
 import Hoverable from './Hoverable';
 
 const mapStateToProps = (state, ownProps) => ({
-  hovered: ownProps.id && state.hover ? state.hover[ownProps.id] : false,
+  hovered: state.hover ? state.hover[ownProps.id] : false,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onMouseEnter: () => (ownProps.id ?
-    dispatch(hover(ownProps.id)) : null),
-  onMouseLeave: () => (ownProps.id ?
-    dispatch(unhover(ownProps.id)) : null),
+  onMouseEnter: () => dispatch(hover(ownProps.id)),
+  onMouseLeave: () => dispatch(unhover(ownProps.id)),
 });
 
 export default connect(
