@@ -10,10 +10,10 @@ Combine the reducer under the `hover` state tree
 
 ```js
 import { combineReducers } from 'redux';
-import hover from '@bufferapp/redux-hover';
+import { reducer } from '@bufferapp/redux-hover';
 
 const app = combineReducers({
-  hover,
+  hover: reducer, // important to have this under the hover state tree
 });
 
 export default app;
@@ -46,11 +46,11 @@ MyComponent.propTypes = {
 export default TestComponent;
 ```
 
-Wrap `MyComponent` with the `Hoverable` component.
+Wrap `MyComponent` with the `Hoverable` component. Make sure you set and `id`.
 
 ```js
 import React from 'react';
-import Hoverable from '@bufferapp/redux-hover';
+import { Hoverable } from '@bufferapp/redux-hover';
 import MyComponent from './MyComponent';
 
 const App = () =>
@@ -74,8 +74,10 @@ the hover prop is set to `true` on `MyComponent` when the mouse is hovering it. 
 
 ### Choosing Id's
 
-As long as id's are different, they'll be independently hoverable. The above example sets the strings manually, but you could also use a `uuid()` too. Id's with the same value will all get the hover property set to true at the same time.
+As long as id's are different, they'll be independently hoverable. The above example sets the strings manually, but you could also use a `uuid()` too.
+
+This also means that ids with the same value will all get the hover state applied when any of them are hovered.
 
 ### MyComponent is cloned with `React.clone`
 
-This keeps the number of items on the page minimal but adds a little overhead to clone the hoverable component. So it's best to keep these small.
+This keeps the number of elements on the page minimal but adds a little overhead to clone the hoverable component.
