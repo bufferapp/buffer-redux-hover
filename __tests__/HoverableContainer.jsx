@@ -6,7 +6,7 @@ import HoverableContainer from '../src/HoverableContainer';
 const storeFake = state => ({
   default: () => {},
   subscribe: () => {},
-  dispatch: () => {},
+  dispatch: jest.fn(),
   getState: () => ({ ...state }),
 });
 
@@ -62,5 +62,21 @@ describe('HoverableContainer', () => {
 
     expect(wrapper.find(TestComponent).props().hovered)
       .toBe(true);
+  });
+
+  it('should dispatch onMouseEnter event', () => {
+    const text = 'Hi!';
+    const id = 'someid';
+    const store = storeFake({});
+    const wrapper = mount(
+      <Provider store={store}>
+        <HoverableContainer id={id}>
+          <TestComponent>{text}</TestComponent>
+        </HoverableContainer>
+      </Provider>,
+    );
+    wrapper.find(HoverableContainer).simulate('mouseEnter');
+    expect(store.dispatch)
+      .toBeCalled();
   });
 });
