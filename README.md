@@ -43,7 +43,7 @@ MyComponent.propTypes = {
   onMouseLeave: PropTypes.func,
 };
 
-export default TestComponent;
+export default MyComponent;
 ```
 
 Wrap `MyComponent` with the `Hoverable` component. Make sure you set and `id`.
