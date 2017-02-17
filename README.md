@@ -25,20 +25,20 @@ Create a component that has a `hovered`, `onMouseEnter` and `onMouseLeave` prop.
 import React, { PropTypes } from 'react';
 
 const MyComponent = ({
-  hover, // managed by redux-hover
+  hovered, // managed by redux-hover
   onMouseEnter,
   onMouseLeave,
 }) =>
   <div
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
-    style={{ background: hover ? 'green' : 'red' }}
+    style={{ background: hovered ? 'green' : 'red' }}
   >
     Hover This
   </div>;
 
 MyComponent.propTypes = {
-  hover: PropTypes.bool,
+  hovered: PropTypes.bool,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
 };
@@ -68,9 +68,9 @@ export default App;
 
 ## Notes
 
-### hover prop
+### hovered prop
 
-the hover prop is set to `true` on `MyComponent` when the mouse is hovering it. Otherwise it's set to false.
+the hovered prop is set to `true` on `MyComponent` when the mouse is hovering it. Otherwise it's set to false.
 
 ### Choosing Id's
 
