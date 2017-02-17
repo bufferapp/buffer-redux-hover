@@ -2,6 +2,10 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import HoverableContainer from '../src/HoverableContainer';
+import {
+  HOVER,
+  UNHOVER,
+} from '../src/action';
 
 const storeFake = state => ({
   default: () => {},
@@ -77,6 +81,28 @@ describe('HoverableContainer', () => {
     );
     wrapper.find(HoverableContainer).simulate('mouseEnter');
     expect(store.dispatch)
-      .toBeCalled();
+      .toBeCalledWith({
+        type: HOVER,
+        id,
+      });
+  });
+
+  it('should dispatch onMouseLeave event', () => {
+    const text = 'Hi!';
+    const id = 'someid';
+    const store = storeFake({});
+    const wrapper = mount(
+      <Provider store={store}>
+        <HoverableContainer id={id}>
+          <TestComponent>{text}</TestComponent>
+        </HoverableContainer>
+      </Provider>,
+    );
+    wrapper.find(HoverableContainer).simulate('mouseLeave');
+    expect(store.dispatch)
+      .toBeCalledWith({
+        type: UNHOVER,
+        id,
+      });
   });
 });
