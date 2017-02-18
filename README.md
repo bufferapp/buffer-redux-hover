@@ -58,7 +58,7 @@ MyHoverableComponent.propTypes = {
 export default connectHoverable(MyHoverableComponent);
 ```
 
-Wrap `MyComponent` with the `Hoverable` component. Make sure you set and `id`:
+Place `MyHoverableComponent` on the page and set a `hoverId`:
 
 ```js
 import React from 'react';
@@ -77,7 +77,7 @@ export default App;
 
 ### hovered prop
 
-The hovered prop is set to `true` on `MyComponent` when the mouse is hovering over it. Otherwise it's set to false.
+The hovered prop is set to `true` on `MyHoverableComponent` when the mouse is hovering over it. Otherwise it's set to false.
 
 ### Choosing hoverId's
 
@@ -85,6 +85,27 @@ As long as id's are different, they'll be independently hoverable. The above exa
 
 This also means that ids with the same value will all get the hover state applied when any of them are hovered.
 
-### MyComponent is cloned with `React.clone`
+### MyHoverableComponent is cloned with `React.clone`
 
 This keeps the number of elements on the page minimal but adds a little overhead to clone the hoverable component.
+
+### Manually Dispatching Actions For Hover Or Unhover
+
+Sometimes there's cases where manually dispatching an action might be necessary. A good example is a button that removes itself (clearing a todo list item for example). The actions are exposed for this purpose so they can be dispatched:
+
+```js
+import {
+  unhover,
+} from '@bufferapp/redux-hover';
+
+export const REMOVE_TODO = 'REMOVE_TODO';
+
+export const removeTodo = todoListId => dispatch =>
+  Promise.all([
+    dispatch({
+      type: REMOVE_TODO,
+      todoListId,
+    }),
+    dispatch(unhover(`todo-list-item/remove-${todoListId}`)),
+  ]);
+```
