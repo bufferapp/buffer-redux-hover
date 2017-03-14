@@ -1,6 +1,6 @@
 {
   "name": "@bufferapp/redux-hover",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Keep React component hover state in redux",
   "main": "./lib/index.js",
   "scripts": {
@@ -35,6 +35,9 @@
     "url": "https://github.com/bufferapp/buffer-redux-hover/issues"
   },
   "homepage": "https://github.com/bufferapp/buffer-redux-hover#readme",
+  "peerDependencies": {
+    "react-redux": ">= 4.4.5"
+  },
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-eslint": "^7.1.1",
